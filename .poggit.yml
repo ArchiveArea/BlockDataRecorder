@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/nhanaz-pm-pl/BlockDataRecorder
+build-by-default: true
+branches:
+- master
+projects:
+  BlockDataRecorder:
+    path: ""
+...
