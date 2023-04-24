@@ -31,7 +31,7 @@ class Main extends PluginBase implements Listener {
 		$item = $event->getItem();
 		$block = $event->getBlock();
 		if ($item instanceof ItemBlock) {
-			$itemSerialize = $item->jsonSerialize($item);
+			$itemSerialize = $item->jsonSerialize();
 			$itemEncoded = json_encode($itemSerialize);
 			$this->blockData->setData($block, $itemEncoded);
 		}
