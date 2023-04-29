@@ -33,7 +33,9 @@ class Main extends PluginBase implements Listener {
 		if ($item instanceof ItemBlock) {
 			$itemSerialize = $item->jsonSerialize();
 			$itemEncoded = json_encode($itemSerialize);
-			$this->blockData->setData($block, $itemEncoded);
+			if (preg_match('/^\{"id":\d+,"count":\d+\}$/', $itemEncoded)) {
+				$this->blockData->setData($block, $itemEncoded);
+			}
 		}
 	}
 
