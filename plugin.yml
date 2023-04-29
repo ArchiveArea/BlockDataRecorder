@@ -1,6 +1,6 @@
 ---
 name: BlockDataRecorder
-version: 0.0.1
+version: 0.0.2
 main: NhanAZ\BlockDataRecorder\Main
 api: 4.0.0
 website: https://github.com/NhanAZ
