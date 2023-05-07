@@ -7,5 +7,5 @@ projects:
     path: ""
     libs:
       - src: NhanAZ/BlockData/BlockData
-        version: 0.0.2
+        version: 0.0.4
 ...
