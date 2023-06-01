@@ -23,19 +23,22 @@ class Main extends PluginBase implements Listener {
 
 	private function jsonStringToItem(string $string): Item {
 		$itemDecoded = json_decode($string, true);
-		$itemDeserialize = Item::jsonDeserialize($itemDecoded);
+		$itemDeserialize = Item::legacyJsonDeserialize($itemDecoded);
 		return $itemDeserialize;
 	}
 
 	public function onBlockPlace(BlockPlaceEvent $event): void {
 		$item = $event->getItem();
-		$block = $event->getBlock();
-		if ($item instanceof ItemBlock) {
-			$itemSerialize = $item->jsonSerialize();
-			$itemEncoded = json_encode($itemSerialize);
-			if (!preg_match('/^\{"id":\d+,"count":\d+\}$/', $itemEncoded)) {
-				$this->blockData->setData($block, $itemEncoded);
+		$blocks = $event->getTransaction()->getBlocks();
+		foreach ($blocks as [$x, $y, $z, $block]) {
+			if ($item instanceof ItemBlock) {
+				$itemSerialize = $item->jsonSerialize();
+				$itemEncoded = json_encode($itemSerialize);
+				if (!preg_match('/^\{"id":\d+,"count":\d+\}$/', $itemEncoded)) {
+					$this->blockData->setData($block, $itemEncoded);
+				}
 			}
+			break;
 		}
 	}
 
