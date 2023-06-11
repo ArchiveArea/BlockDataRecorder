@@ -8,4 +8,6 @@ projects:
     libs:
       - src: NhanAZ/BlockData/BlockData
         version: 0.0.4
+      - src: NhanAZ/libBedrock/libBedrock
+        version: 1.1.1
 ...

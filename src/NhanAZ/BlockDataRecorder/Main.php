@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NhanAZ\BlockDataRecorder;
 
 use NhanAZ\BlockData\BlockData;
+use NhanAZ\libBedrock\ItemFactory;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
@@ -32,7 +33,7 @@ class Main extends PluginBase implements Listener {
 		$blocks = $event->getTransaction()->getBlocks();
 		foreach ($blocks as [$x, $y, $z, $block]) {
 			if ($item instanceof ItemBlock) {
-				$itemSerialize = $item->jsonSerialize();
+				$itemSerialize = ItemFactory::jsonSerialize($item);
 				$itemEncoded = json_encode($itemSerialize);
 				if (!preg_match('/^\{"id":\d+,"count":\d+\}$/', $itemEncoded)) {
 					$this->blockData->setData($block, $itemEncoded);
