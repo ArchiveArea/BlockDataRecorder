@@ -35,7 +35,7 @@ class Main extends PluginBase implements Listener {
 			if ($item instanceof ItemBlock) {
 				$itemSerialize = ItemFactory::jsonSerialize($item);
 				$itemEncoded = json_encode($itemSerialize);
-				if (!preg_match('/^\{"id":\d+,"count":\d+\}$/', $itemEncoded)) {
+				if (!preg_match('/^\{"id":\d+,"damage":\d+,"count":\d+\}$/', $itemEncoded)) {
 					$this->blockData->setData($block, $itemEncoded);
 				}
 			}
@@ -50,6 +50,7 @@ class Main extends PluginBase implements Listener {
 			if ($blockData !== null) {
 				$itemDrop = $this->jsonStringToItem($blockData);
 				if ($itemDrop instanceof ItemBlock) {
+					$this->blockData->removeData($block);
 					$itemDrop->setCount(1);
 					$event->setDrops([$itemDrop]);
 				}
